@@ -41,20 +41,4 @@ class PageController extends AbstractController
     public function contact(): Response{
         return $this->render('page/contact.html.twig');
     }
-
-    /**
-     * @Route("/sign-up", name="sign-up")
-     * @return Response
-     */
-    public function signup(): Response{
-        return $this->render('page/sign-up.html.twig');
-    }
-
-    /**
-     * @Route("/sign-in", name="sign-in")
-     * @return Response
-     */
-    public function signin(): Response{
-        return $this->render('page/sign-in.html.twig');
-    }
 }

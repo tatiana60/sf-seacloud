@@ -37,9 +37,16 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/account/profile", name="profile")
+     * @Route ("/{id}/reboot", name="server_reboot", requirements={"id": "\d+"})
      */
-    public function profile(): Response{
-        return $this->render('account/profile.html.twig');
+    public function reboot(int $id): Response{
+
+        /** @var Server $server */
+
+        $server = $this->repository->find($id);
+
+        $server->setState(Server::STATE_STOPPED);
+
+        return $this->redirectToRoute('dashboard');
     }
 }

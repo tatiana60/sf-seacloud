@@ -3,6 +3,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\NameServer;
 use App\Entity\Server;
 use App\Form\Type\ServerType;
 use App\Repository\ServerRepository;
@@ -27,7 +28,7 @@ class ServerController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function create(Request $request): Response{
+    public function create(Request $request, NameServer $nameServer): Response{
 
         $server = new Server();
 
@@ -36,6 +37,10 @@ class ServerController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
+            if(empty($server->getName())) {
+                $nameServer->NameServer($server);
+            }
 
             $em = $this->getDoctrine()->getManager();
 

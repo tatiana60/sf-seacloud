@@ -34,12 +34,12 @@ class Server
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $cpu;
+    private $cpu = 1;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $ram;
+    private $ram = 1;
 
     /**
      * @ORM\ManyToOne(targetEntity=Distribution::class)
