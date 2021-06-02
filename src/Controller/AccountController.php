@@ -47,6 +47,11 @@ class AccountController extends AbstractController
 
         $server->setState(Server::STATE_STOPPED);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($server);
+        $em->flush();
+
         return $this->redirectToRoute('dashboard');
     }
 }
