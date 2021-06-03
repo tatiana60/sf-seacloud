@@ -55,4 +55,25 @@ class ServerController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/account/{id}/delete", name="server_delete")
+     * @param int $id
+     * @return Response
+     */
+    public function delete(int $id, Request $request): Response
+    {
+        $serverRepository = $this->getDoctrine()->getRepository(Server::class);
+        $server = $serverRepository->find($id);
+
+        if($request->get('delete-confirm')){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($server);
+            $em->flush();
+        }
+
+        $request->request->get('delete-confirm');
+
+        return $this->redirectToRoute('dashboard');
+    }
 }

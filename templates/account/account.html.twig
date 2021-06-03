@@ -42,14 +42,20 @@
                             <div class="row g-0">
                                 <div class="col-md-3">
                                     <div class="card-body">
-                                        <h4 class="mb-3">{{ server.name }}</h4>
+                                        <a href="{{ path('server_detail', {'id': server.id}) }}"><h4 class="mb-3">{{ server.name }}</h4></a>
                                         <p>
                                             <strong>IP</strong>
                                             <span class="text-muted">255.255.255.255</span>
                                         </p>
                                         <p>
                                             <strong>Status</strong>
-                                            <span class="badge bg-success">{{ server.state }}</span>
+                                            {% if server.state == 2 %}
+                                            <span class="badge bg-success">Ready</span>
+                                            {% elseif server.state == 1 %}
+                                                <span class="badge bg-danger">Stoped</span>
+                                            {% else %}
+                                                <span class="badge bg-warning">Pending</span>
+                                            {% endif %}
                                         </p>
                                     </div>
                                 </div>
@@ -76,7 +82,7 @@
                                             Restart
                                         </a>
                                         <br>
-                                        <a class="btn btn-light" href="#">
+                                        <a class="btn btn-light" href="{{ path('server_restart', {'id': server.id}) }}">
                                             Reset
                                         </a>
                                     </div>

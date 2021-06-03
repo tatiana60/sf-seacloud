@@ -24,11 +24,6 @@ class ServerType extends AbstractType
                 'help'  => 'Leave blank for auto generation.',
                 'required' => false,
             ])
-            ->add('state', TextType::class, [
-                'label' => 'Name',
-                'help'  => 'Leave blank for auto generation.',
-                'required' => false,
-            ])
             ->add('location', EntityType::class, [
                 'class' => DataCenter::class,
                 'choice_label' => 'name',
